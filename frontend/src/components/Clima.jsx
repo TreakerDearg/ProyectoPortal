@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import "../styles/clima.css";
 
 export default function Home() {
@@ -21,13 +21,14 @@ export default function Home() {
     synth.speak(utter);
   };
 
+  // 🕒 Actualizar hora en tiempo real
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
 
   // 🌍 Obtener coordenadas
-  const getCoordinates = async (cityName) => {
+  const getCoordinates = useCallback(async (cityName) => {
     try {
       const res = await fetch(
         `https://nominatim.openstreetmap.org/search?format=json&q=${cityName}`
@@ -40,36 +41,41 @@ export default function Home() {
       setLoading(false);
       return null;
     }
-  };
-
-  // 🌦 Obtener clima
-  const getWeather = async (cityName) => {
-    setLoading(true);
-    setError(null);
-    const coords = await getCoordinates(cityName);
-    if (!coords) return;
-
-    try {
-      const res = await fetch(
-        `https://api.open-meteo.com/v1/forecast?latitude=${coords.lat}&longitude=${coords.lon}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`
-      );
-      const data = await res.json();
-      setWeather(data.current_weather);
-      setForecast(data.daily);
-      speak(
-        `El sistema reporta que en ${cityName} la temperatura actual es de ${data.current_weather.temperature} grados Celsius, con viento a ${data.current_weather.windspeed} kilómetros por hora.`
-      );
-    } catch {
-      setError("Error al obtener el clima");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getWeather(city);
   }, []);
 
+  // 🌦 Obtener clima (memoizado para evitar recreación)
+  const getWeather = useCallback(
+    async (cityName = city) => {
+      setLoading(true);
+      setError(null);
+      const coords = await getCoordinates(cityName);
+      if (!coords) return;
+
+      try {
+        const res = await fetch(
+          `https://api.open-meteo.com/v1/forecast?latitude=${coords.lat}&longitude=${coords.lon}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`
+        );
+        const data = await res.json();
+        setWeather(data.current_weather);
+        setForecast(data.daily);
+        speak(
+          `El sistema reporta que en ${cityName} la temperatura actual es de ${data.current_weather.temperature} grados Celsius, con viento a ${data.current_weather.windspeed} kilómetros por hora.`
+        );
+      } catch {
+        setError("Error al obtener el clima");
+      } finally {
+        setLoading(false);
+      }
+    },
+    [city, getCoordinates]
+  );
+
+  // 🚀 Efecto inicial: obtener clima por defecto
+  useEffect(() => {
+    getWeather(city);
+  }, [city, getWeather]);
+
+  // 🔎 Buscar sugerencias
   const fetchSuggestions = async (query) => {
     if (!query) return setSuggestions([]);
     const res = await fetch(
@@ -96,15 +102,15 @@ export default function Home() {
     getWeather(city);
   };
 
-  // 🌡️ Estado del clima (según código)
+  // 🌡️ Estado del clima
   const getWeatherIcon = (code) => {
     if (!code) return "☁️";
-    if ([0, 1].includes(code)) return "☀️"; // Soleado
-    if ([2, 3].includes(code)) return "⛅"; // Parcialmente nublado
-    if ([45, 48].includes(code)) return "🌫️"; // Neblina
-    if ([51, 61, 63, 65].includes(code)) return "🌧️"; // Lluvia
-    if ([71, 73, 75, 77].includes(code)) return "❄️"; // Nieve
-    if ([95, 96, 99].includes(code)) return "⛈️"; // Tormenta
+    if ([0, 1].includes(code)) return "☀️";
+    if ([2, 3].includes(code)) return "⛅";
+    if ([45, 48].includes(code)) return "🌫️";
+    if ([51, 61, 63, 65].includes(code)) return "🌧️";
+    if ([71, 73, 75, 77].includes(code)) return "❄️";
+    if ([95, 96, 99].includes(code)) return "⛈️";
     return "☁️";
   };
 
@@ -117,7 +123,7 @@ export default function Home() {
 
   return (
     <div className="home-container cyberpunk-ui">
-      {/* Encabezado de sistema */}
+      {/* HUD Superior */}
       <div className="hud-top neon-glow">
         <div className="hud-time">{time.toLocaleTimeString()}</div>
         <div className="hud-date">{time.toLocaleDateString()}</div>
@@ -152,11 +158,10 @@ export default function Home() {
         )}
       </form>
 
-      {/* Estado */}
+      {/* Estado actual */}
       {loading && <p className="loading neon-text">🧠 Escaneando atmósfera...</p>}
       {error && <p className="error neon-text">⚠️ {error}</p>}
 
-      {/* Panel Clima */}
       {weather && (
         <div className="weather-hud neon-card holographic">
           <div className="hud-left">
@@ -169,7 +174,6 @@ export default function Home() {
           <div className="hud-right">
             <p>💨 Viento: {weather.windspeed} km/h</p>
             <p>🧭 Dirección: {weather.winddirection}°</p>
-            <p>🌐 Zona: {forecast.timezone || "Local"}</p>
             <p>🛰 Estado: {weather.weathercode ? "Activo" : "Normal"}</p>
           </div>
         </div>
