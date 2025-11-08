@@ -1,0 +1,203 @@
+.navbar-cyberpunk {
+  width: 100%;
+  background: #0d0d0d;
+  border-bottom: 2px solid #0ff;
+  font-family: "Orbitron", sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 0 15px #0ff, 0 0 30px #ff00ff;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+/* Logo */
+.navbar-logo a {
+  color: #0ff;
+  font-weight: bold;
+  font-size: 1.4rem;
+  text-decoration: none;
+  text-shadow: 0 0 5px #0ff, 0 0 10px #ff00ff;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+.navbar-logo a:hover {
+  color: #ff00ff;
+  text-shadow: 0 0 10px #ff00ff, 0 0 20px #0ff;
+}
+
+/* Enlaces */
+.navbar-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  transition: all 0.3s ease-in-out;
+  align-items: center;
+}
+
+.navbar-links li {
+  position: relative;
+}
+
+.navbar-links li a {
+  color: #00ffff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s, text-shadow 0.3s, transform 0.3s;
+  text-shadow: 0 0 2px #0ff;
+}
+.navbar-links li a:hover {
+  color: #ff00ff;
+  text-shadow: 0 0 8px #ff00ff, 0 0 15px #0ff;
+  transform: translateY(-2px);
+}
+
+/* Submenú Alumnos */
+.submenu {
+  position: relative;
+}
+
+.submenu-btn {
+  background: none;
+  border: none;
+  color: #00ffff;
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  text-shadow: 0 0 2px #0ff;
+  transition: color 0.3s;
+}
+.submenu-btn:hover {
+  color: #ff00ff;
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.3s;
+}
+.arrow.open {
+  transform: rotate(180deg);
+}
+
+/* Dropdown */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #111;
+  border: 2px solid #0ff;
+  border-radius: 5px;
+  padding: 0.5rem 0;
+  min-width: 180px;
+  box-shadow: 0 0 10px #ff00ff, 0 0 20px #0ff;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+  z-index: 99;
+}
+
+.dropdown li {
+  padding: 0.5rem 1rem;
+}
+
+.dropdown li a {
+  color: #00ffff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.dropdown li a:hover {
+  color: #ff00ff;
+}
+
+/* Mostrar dropdown si está activo */
+.dropdown.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Botón Unidad 6 */
+.unidad6-btn {
+  padding: 0.3rem 0.8rem;
+  border: 2px solid #0ff;
+  border-radius: 5px;
+  transition: background 0.3s, color 0.3s, transform 0.3s;
+}
+.unidad6-btn:hover {
+  background: #ff00ff;
+  color: #111;
+  transform: scale(1.05);
+}
+
+/* Botón hamburguesa */
+.navbar-toggle {
+  display: none;
+  font-size: 2rem;
+  color: #0ff;
+  cursor: pointer;
+  text-shadow: 0 0 5px #0ff, 0 0 10px #ff00ff;
+  transition: transform 0.3s, color 0.3s;
+}
+.navbar-toggle:hover {
+  color: #ff00ff;
+  transform: scale(1.3);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .navbar-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background: #111;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, padding 0.3s;
+    border-top: 1px solid #0ff;
+  }
+
+  .navbar-links.active {
+    max-height: 600px;
+    padding: 1rem 0;
+  }
+
+  .navbar-links li {
+    margin: 1rem 0;
+    text-align: center;
+  }
+
+  /* Submenú en móvil */
+  .dropdown {
+    position: static;
+    top: auto;
+    left: auto;
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .dropdown li {
+    padding: 0.5rem 0;
+  }
+
+  .submenu-btn {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .navbar-toggle {
+    display: block;
+  }
+}

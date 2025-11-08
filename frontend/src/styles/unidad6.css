@@ -1,0 +1,134 @@
+.unidad6-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  font-family: "Orbitron", sans-serif;
+  color: #00f0ff;
+  background: linear-gradient(135deg, #0a0a0a, #1a0a2a);
+  min-height: 100vh;
+}
+
+.unidad6-container h2 {
+  font-size: 2.5rem;
+  color: #ff00ff;
+  text-shadow: 0 0 5px #ff00ff, 0 0 10px #00f0ff, 0 0 20px #ff00ff;
+  margin-bottom: 2rem;
+  animation: flicker 1.5s infinite alternate;
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.4; }
+}
+
+.unidad6-section {
+  background: #111;
+  border: 2px solid #00f0ff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 0 15px #ff00ff, 0 0 30px #00f0ff;
+  transition: transform 0.3s;
+}
+
+.unidad6-section:hover {
+  transform: translateY(-5px) scale(1.02);
+}
+
+.unidad6-section h3 {
+  color: #00f0ff;
+  margin-bottom: 0.8rem;
+  font-size: 1.4rem;
+  text-shadow: 0 0 5px #00f0ff, 0 0 10px #ff00ff;
+}
+
+.unidad6-section p,
+.unidad6-section li {
+  color: #c5c5c5;
+  line-height: 1.6;
+}
+
+.unidad6-section ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0.5rem;
+}
+
+.unidad6-section ul li::before {
+  content: "▹";
+  margin-right: 0.5rem;
+  color: #ff00ff;
+}
+
+.prompt-simulation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.prompt-simulation input {
+  width: 80%;
+  max-width: 600px;
+  padding: 0.6rem 1rem;
+  border: 2px solid #00f0ff;
+  border-radius: 5px;
+  background: #111;
+  color: #00f0ff;
+  margin-bottom: 0.8rem;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.prompt-simulation input:focus {
+  border-color: #ff00ff;
+  box-shadow: 0 0 10px #ff00ff;
+}
+
+.prompt-simulation button {
+  padding: 0.5rem 1rem;
+  background: #ff00ff;
+  color: #111;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.prompt-simulation button:hover {
+  background: #00f0ff;
+  color: #111;
+  transform: scale(1.05);
+}
+
+.resultado-neon {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #111;
+  border: 2px solid #00f0ff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #ff00ff, 0 0 30px #00f0ff;
+  color: #00f0ff;
+  font-weight: bold;
+  text-align: center;
+  animation: neon-glow 2s infinite alternate;
+}
+
+@keyframes neon-glow {
+  from { box-shadow: 0 0 10px #ff00ff, 0 0 20px #00f0ff; }
+  to { box-shadow: 0 0 20px #ff00ff, 0 0 40px #00f0ff; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .unidad6-section {
+    width: 90%;
+  }
+
+  .prompt-simulation input {
+    width: 95%;
+  }
+}

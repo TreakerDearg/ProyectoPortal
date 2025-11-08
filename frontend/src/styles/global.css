@@ -1,0 +1,25 @@
+:root {
+  --color-primario: #00d4ff;
+  --color-acento: #ff6b6b;
+  --color-secundario: #1a1a1a;
+  --color-texto: #ccc;
+  --font-base: 'Roboto Mono', monospace;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-base);
+  background-color: var(--color-secundario);
+  color: var(--color-texto);
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-primario);
+}
+
+button {
+  font-family: var(--font-base);
+  cursor: pointer;
+}

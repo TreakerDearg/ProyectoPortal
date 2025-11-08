@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+.carreras-section {
+  padding: 50px 20px;
+  background: linear-gradient(135deg, #0a0a0f 0%, #111111 100%);
+  color: #00ffea;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.carreras-title {
+  font-size: 2.8rem;
+  text-align: center;
+  color: #00ffea;
+  text-shadow: 0 0 8px #00ffea, 0 0 18px #ff00ff;
+  margin-bottom: 50px;
+}
+
+.carreras-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.carrera-card {
+  position: relative;
+  background-color: #111;
+  border: 1px solid #00ffea;
+  border-radius: 14px;
+  padding: 25px 20px;
+  overflow: hidden;
+  box-shadow: 0 0 15px #00ffea50;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.carrera-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 25px #00ffea, 0 0 40px #ff00ff;
+}
+
+.carrera-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(0,255,234,0.15), transparent 60%);
+  transform: rotate(45deg);
+  transition: all 0.4s ease;
+}
+
+.carrera-card:hover .carrera-glow {
+  top: 0;
+  left: 0;
+}
+
+.carrera-title {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  color: #00ffea;
+  text-shadow: 0 0 3px #00ffea, 0 0 10px #ff00ff;
+}
+
+.carrera-description {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.carrera-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.carrera-tag {
+  background: #0ff;
+  color: #111;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: transform 0.2s;
+}
+
+.carrera-tag:hover {
+  transform: scale(1.1);
+}
+
+.carrera-hud {
+  margin-bottom: 15px;
+}
+
+.hud-bar {
+  background: #222;
+  border: 1px solid #00ffea;
+  border-radius: 6px;
+  height: 10px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.hud-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00ffea, #ff00ff);
+  transition: width 0.5s ease;
+}
+
+.hud-text {
+  font-size: 0.75rem;
+  color: #00ffea;
+  text-shadow: 0 0 2px #00ffea;
+}
+
+.btn-industrial {
+  background: linear-gradient(90deg, #00ffea, #ff00ff);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  color: #111;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px #00ffea, 0 0 10px #ff00ff;
+}
+
+.btn-industrial:hover {
+  background: linear-gradient(90deg, #ff00ff, #00ffea);
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #00ffea, 0 0 25px #ff00ff;
+}

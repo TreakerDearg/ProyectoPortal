@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portal Institucional IA</title>
+
+    <!-- Tailwind CSS vía CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+
+    <style>
+      :root {
+        --color-primario: #00d4ff;
+        --color-acento: #ffaa00;
+        --color-fondo: #0b0c10;
+        --color-secundario: #1f2833;
+        --color-texto: #c5c6c7;
+      }
+
+      body {
+        background-color: var(--color-fondo);
+        color: var(--color-texto);
+        font-family: "Inter", sans-serif;
+      }
+
+      .btn-industrial {
+        background: var(--color-primario);
+        color: #000;
+        font-weight: 600;
+        border-radius: 10px;
+        padding: 0.6rem 1.5rem;
+        transition: 0.3s ease-in-out;
+      }
+
+      .btn-industrial:hover {
+        background: var(--color-acento);
+        transform: scale(1.05);
+      }
+
+      .card-industrial {
+        background: var(--color-secundario);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+        transition: 0.3s;
+      }
+
+      .card-industrial:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 25px rgba(0, 212, 255, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

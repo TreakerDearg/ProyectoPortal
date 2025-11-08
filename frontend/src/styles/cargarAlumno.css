@@ -1,0 +1,120 @@
+/* --- Variables Steampunk --- */
+:root {
+  --color-bg-dark: #2b1e15;
+  --color-bg-medium: #3c2f2f;
+  --color-bg-light: #4b3a2f;
+  --color-brass: #b08d57;
+  --color-copper: #8b6d4f;
+  --color-gold: #d4af37;
+  --color-text: #f0e0c4;
+  --font-primary: "Cinzel", serif;
+}
+
+/* --- Contenedor Principal --- */
+.cargar-alumno-container {
+  background: linear-gradient(145deg, var(--color-bg-medium), var(--color-bg-dark));
+  padding: 2.5rem;
+  border: 3px solid var(--color-brass);
+  border-radius: 12px;
+  box-shadow: inset 0 0 20px #00000060, 0 0 15px var(--color-gold);
+  max-width: 500px;
+  margin: 2rem auto;
+  color: var(--color-text);
+  font-family: var(--font-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- Engranajes decorativos --- */
+.cargar-alumno-container::before,
+.cargar-alumno-container::after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: url('https://cdn-icons-png.flaticon.com/512/281/281887.png') no-repeat center/contain;
+  opacity: 0.2;
+  animation: spin 10s linear infinite;
+}
+.cargar-alumno-container::before { top: 10px; left: 10px; }
+.cargar-alumno-container::after { bottom: 10px; right: 10px; animation-direction: reverse; }
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* --- Título --- */
+.cargar-alumno-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--color-gold);
+  text-shadow: 1px 1px 2px var(--color-brass), 0 0 8px rgba(212,175,55,0.3);
+  font-size: 2rem;
+}
+
+/* --- Mensajes --- */
+.errors {
+  list-style: none;
+  padding: 0.5rem 0;
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.success {
+  color: var(--color-gold);
+  text-align: center;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 4px var(--color-brass);
+}
+
+/* --- Formulario --- */
+.cargar-alumno-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: 2px solid var(--color-brass);
+  border-radius: 6px;
+  background: var(--color-bg-light);
+  color: var(--color-text);
+  outline: none;
+  font-size: 1rem;
+  box-shadow: inset 0 0 6px #00000050;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 10px var(--color-gold);
+}
+
+.error-input {
+  border-color: #e74c3c !important;
+  box-shadow: 0 0 8px #e74c3c;
+}
+
+/* --- Botón --- */
+.btn-submit {
+  padding: 0.7rem 1rem;
+  background-color: var(--color-brass);
+  color: var(--color-bg-dark);
+  font-weight: bold;
+  border: 2px solid var(--color-gold);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.3s, background 0.3s;
+}
+
+.btn-submit:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px var(--color-gold);
+  background-color: var(--color-gold);
+  color: var(--color-bg-dark);
+}
