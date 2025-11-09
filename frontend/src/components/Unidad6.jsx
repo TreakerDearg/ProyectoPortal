@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react"; 
 import * as Tone from 'tone';
-import "../styles/carreras.css"; // Importar CSS externo
+import "../styles/unidad6.css"; // Importar CSS externo
 
 // Inicializar Synth de Tone.js
 const synth = new Tone.PolySynth(Tone.Synth, {
