@@ -1,156 +1,105 @@
+import { useState, useEffect } from "react";
 import "../styles/unidad6.css";
-import { useState } from "react";
-import { FaRobot, FaLightbulb, FaCode, FaBook, FaDesktop } from "react-icons/fa";
 
 export default function Unidad6() {
   const [prompt, setPrompt] = useState("");
-  const [resultado, setResultado] = useState("");
-  const [showAdvanced, setShowAdvanced] = useState(false);
-  const [history, setHistory] = useState([]);
+  const [resultado, setResultado] = useState([]);
+  const [logs, setLogs] = useState([]);
+  const [running, setRunning] = useState(false);
 
   const handlePromptChange = (e) => setPrompt(e.target.value);
 
   const handleRunPrompt = () => {
-    const simulatedResult = `Resultado simulado para: "${prompt}"`;
-    setResultado(simulatedResult);
-    setHistory([simulatedResult, ...history]);
+    if (!prompt) return;
+
+    const timestamp = new Date().toLocaleTimeString();
+    setLogs((prev) => [`[${timestamp}] Ejecutando: "${prompt}"`, ...prev]);
+    setRunning(true);
+
+    let i = 0;
+    const simulatedResult = `Resultado de IA: ${prompt.split("").reverse().join("")}`;
+    setResultado([]);
+
+    const typingEffect = setInterval(() => {
+      i++;
+      setResultado([simulatedResult.slice(0, i)]);
+      if (i === simulatedResult.length) {
+        clearInterval(typingEffect);
+        setRunning(false);
+      }
+    }, 30);
+
     setPrompt("");
   };
 
-  const toggleAdvanced = () => setShowAdvanced(!showAdvanced);
-
-  const openDocumentation = () => {
-    window.open("https://openai.com/research", "_blank");
-  };
-
   return (
-    <div className="unidad6-container neon-bg">
-      <h2 className="neon-glitch">Unidad 6 – IA Generativa</h2>
+    <div className="unidad6-container terminal">
+      <h2 className="neon-title">[UNIDAD 6] IA Generativa</h2>
 
-      {/* Qué es IA Generativa */}
-      <section className="unidad6-section">
-        <h3><FaRobot /> ¿Qué es la IA generativa?</h3>
+      {/* Sección de explicación */}
+      <section className="unidad6-section terminal-section">
+        <h3 className="section-title">¿Qué es la IA generativa?</h3>
         <p>
-          La IA generativa es un tipo de inteligencia artificial capaz de crear contenido original
-          a partir de datos de entrada, incluyendo texto, imágenes, música y código. Permite
-          automatizar tareas creativas y generar soluciones innovadoras.
+          Es un sistema capaz de generar contenido original a partir de datos: texto, imágenes, música o código.
+          Automatiza tareas creativas sin reemplazar la inventiva humana.
         </p>
       </section>
 
-      {/* Tipos */}
-      <section className="unidad6-section card-grid">
-        <h3><FaLightbulb /> Tipos de IA Generativa</h3>
-        <div className="cards">
-          <div className="card">
-            <h4>Lenguaje</h4>
-            <p>Modelos como GPT o Bard generan texto, resúmenes, chatbots y asistencia educativa.</p>
-          </div>
-          <div className="card">
-            <h4>Imágenes</h4>
-            <p>DALL·E, MidJourney y Stable Diffusion crean imágenes a partir de descripciones textuales.</p>
-          </div>
-          <div className="card">
-            <h4>Música y Audio</h4>
-            <p>Generación de composiciones musicales o voces sintéticas.</p>
-          </div>
-          <div className="card">
-            <h4>Video y Animación</h4>
-            <p>Creación de animaciones o clips cortos con IA.</p>
-          </div>
+      {/* Sección de herramientas activas */}
+      <section className="unidad6-section terminal-section">
+        <h3 className="section-title">Badges activos / Estado del sistema</h3>
+        <div className="badges">
+          <span className="badge active">GPT-4 ONLINE</span>
+          <span className="badge active">Copilot READY</span>
+          <span className="badge">DALL·E OFFLINE</span>
+          <span className="badge">MidJourney READY</span>
         </div>
       </section>
 
-      {/* Herramientas populares */}
-      <section className="unidad6-section card-grid">
-        <h3><FaCode /> Herramientas populares</h3>
-        <div className="cards">
-          <div className="card">
-            <h4>ChatGPT</h4>
-            <p>Generación de texto inteligente para asistentes virtuales y contenido creativo.</p>
-          </div>
-          <div className="card">
-            <h4>GitHub Copilot</h4>
-            <p>Asistente de programación que ayuda a generar código en tiempo real.</p>
-          </div>
-          <div className="card">
-            <h4>DALL·E</h4>
-            <p>Genera imágenes a partir de descripciones textuales.</p>
-          </div>
-          <div className="card">
-            <h4>Otros</h4>
-            <p>MidJourney, Stable Diffusion, Bard.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Beneficios y Limitaciones */}
-      <section className="unidad6-section">
-        <h3><FaDesktop /> Beneficios y Limitaciones</h3>
+      {/* Sección de tips */}
+      <section className="unidad6-section terminal-section">
+        <h3 className="section-title">Tips rápidos de prompts</h3>
         <ul>
-          <li>Agiliza la creación de contenido y prototipos.</li>
-          <li>Asiste en tareas creativas y análisis de datos.</li>
-          <li>Limitaciones: sesgos, errores inesperados y dependencia tecnológica.</li>
+          <li>Usa lenguaje claro y específico.</li>
+          <li>Divide tareas complejas en pasos.</li>
+          <li>Prueba variaciones para mejores resultados.</li>
         </ul>
       </section>
 
-      {/* Simulación práctica */}
-      <section className="unidad6-section prompt-simulation">
-        <h3>Simulación práctica</h3>
+      {/* Sección de simulación terminal */}
+      <section className="unidad6-section terminal-section">
+        <h3 className="section-title">Simulación Terminal</h3>
         <input
-          type="text"
+          className="terminal-input"
           value={prompt}
           onChange={handlePromptChange}
-          placeholder="Escribe un prompt para simular IA"
+          placeholder="Escribe un prompt de IA..."
         />
-        <button onClick={handleRunPrompt}>Ejecutar</button>
-        {resultado && <div className="resultado-neon">{resultado}</div>}
-        {history.length > 0 && (
-          <div className="history">
-            <h4>Historial de prompts</h4>
-            <ul>
-              {history.map((res, index) => (
-                <li key={index}>{res}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </section>
-
-      {/* Contenido avanzado */}
-      <section className="unidad6-section">
-        <button onClick={toggleAdvanced} className="advanced-toggle">
-          {showAdvanced ? "Ocultar contenido avanzado" : "Mostrar contenido avanzado"}
+        <button className="terminal-btn" onClick={handleRunPrompt} disabled={running}>
+          {running ? "IA Corriendo..." : "Ejecutar"}
         </button>
-        {showAdvanced && (
-          <div className="advanced-section">
-            <h3>Casos de uso avanzados</h3>
-            <ul>
-              <li>Generación de prototipos de productos</li>
-              <li>Optimización de procesos creativos en marketing</li>
-              <li>Asistencia en investigación científica</li>
-              <li>Automatización de tareas de programación repetitivas</li>
-              <li>Creación de contenido multimedia personalizado</li>
-              <li>Análisis predictivo y simulaciones avanzadas</li>
-            </ul>
-          </div>
-        )}
+
+        <div className="terminal-output">
+          {resultado.map((line, idx) => (
+            <p key={idx}>{line}</p>
+          ))}
+        </div>
+
+        <div className="terminal-logs">
+          {logs.map((log, idx) => (
+            <p key={idx} className="log-line">{log}</p>
+          ))}
+        </div>
       </section>
 
-      {/* Documentación */}
-      <section className="unidad6-section">
-        <button onClick={openDocumentation} className="doc-button">
-          <FaBook /> Abrir documentación detallada
+      {/* Sección de documentación */}
+      <section className="unidad6-section terminal-section">
+        <button
+          className="doc-button"
+          onClick={() => window.open("https://openai.com/research", "_blank", "noreferrer")}
+        >
+          Abrir documentación detallada
         </button>
-      </section>
-
-      {/* Recursos adicionales */}
-      <section className="unidad6-section">
-        <h3>Recursos adicionales</h3>
-        <ul>
-          <li><a href="https://www.deeplearning.ai/" target="_blank">DeepLearning.AI</a></li>
-          <li><a href="https://huggingface.co/" target="_blank">Hugging Face</a></li>
-          <li><a href="https://www.tensorflow.org/" target="_blank">TensorFlow</a></li>
-        </ul>
       </section>
     </div>
   );

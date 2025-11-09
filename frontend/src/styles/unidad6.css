@@ -1,216 +1,193 @@
-/* Container principal */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+
+/* Contenedor principal */
 .unidad6-container {
+  font-family: 'Orbitron', monospace;
+  background: radial-gradient(circle at top, #050505, #1a0a1a);
+  color: #00ff99;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
-  font-family: "Orbitron", sans-serif;
-  color: #00f0ff;
-  background: linear-gradient(135deg, #0a0a0a, #1a0a2a);
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
-/* Título principal con glitch/neón */
-.unidad6-container h2 {
-  font-size: 2.8rem;
-  color: #ff00ff;
-  text-shadow: 0 0 5px #ff00ff, 0 0 15px #00f0ff, 0 0 30px #ff00ff;
+/* Título estilo neón con flicker */
+.neon-title {
+  font-size: 3rem;
+  color: #00ff99;
+  text-shadow: 0 0 10px #00ff99, 0 0 20px #00ffff, 0 0 30px #ff00ff;
   margin-bottom: 2rem;
   animation: flicker 1.5s infinite alternate;
 }
-
 @keyframes flicker {
   0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
   20%, 24%, 55% { opacity: 0.4; }
 }
 
-/* Secciones principales */
+/* Secciones estilo panel de control */
 .unidad6-section {
   background: #111;
-  border: 2px solid #00f0ff;
-  border-radius: 12px;
-  padding: 1.8rem;
+  border: 2px solid #00ff99;
+  border-radius: 10px;
+  padding: 1.5rem;
   margin: 1rem 0;
   width: 100%;
   max-width: 800px;
-  box-shadow: 0 0 20px #ff00ff, 0 0 40px #00f0ff;
-  transition: transform 0.4s, box-shadow 0.4s;
+  box-shadow: 0 0 20px #00ff99, 0 0 40px #ff00ff;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
-
+.unidad6-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255,255,255,0.05) 0,
+    rgba(255,255,255,0.05) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+}
 .unidad6-section:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 0 30px #ff00ff, 0 0 60px #00f0ff;
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 0 40px #00ff99, 0 0 60px #ff00ff;
 }
 
-.unidad6-section h3 {
-  color: #00f0ff;
+/* Títulos de sección */
+.section-title {
+  color: #00ff99;
   margin-bottom: 1rem;
-  font-size: 1.6rem;
-  text-shadow: 0 0 5px #00f0ff, 0 0 15px #ff00ff;
-  transition: text-shadow 0.3s;
+  font-size: 1.5rem;
+  text-shadow: 0 0 5px #00ff99, 0 0 10px #ff00ff;
 }
 
-.unidad6-section h3:hover {
-  text-shadow: 0 0 15px #00f0ff, 0 0 30px #ff00ff;
-}
-
-/* Párrafos y listas */
-.unidad6-section p,
-.unidad6-section li {
-  color: #c5c5c5;
-  line-height: 1.6;
-}
-
-.unidad6-section ul {
-  list-style: none;
-  padding-left: 0;
-  margin-top: 0.5rem;
-}
-
-.unidad6-section ul li::before {
-  content: "▹";
-  margin-right: 0.5rem;
-  color: #ff00ff;
-  font-weight: bold;
-}
-
-/* Tarjetas (cards) */
-.cards {
+/* Badges estilo steampunk */
+.badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1rem;
-  justify-content: center;
+  gap: 0.5rem;
+}
+.badge {
+  padding: 0.3rem 0.8rem;
+  border: 1px solid #00ff99;
+  border-radius: 4px;
+  background: linear-gradient(145deg, #111 0%, #222 100%);
+  box-shadow: 0 0 10px #00ff99;
+  font-size: 0.9rem;
+  color: #00ff99;
+  transition: all 0.3s;
+}
+.badge.active {
+  background: linear-gradient(145deg, #00ff99 0%, #00cc77 100%);
+  color: #111;
+  box-shadow: 0 0 15px #00ff99, 0 0 25px #ff00ff;
+  animation: pulse 1.5s infinite alternate;
+}
+@keyframes pulse {
+  from { box-shadow: 0 0 10px #00ff99, 0 0 20px #ff00ff; }
+  to { box-shadow: 0 0 20px #00ff99, 0 0 40px #ff00ff; }
 }
 
-.card {
+/* Inputs y botones terminal */
+.terminal-input {
+  width: 90%;
+  padding: 0.6rem 1rem;
+  margin-bottom: 0.8rem;
+  border: 2px solid #00ff99;
+  border-radius: 4px;
   background: #111;
-  border: 2px solid #ff00ff;
-  border-radius: 12px;
-  padding: 1rem;
-  width: 180px;
-  box-shadow: 0 0 10px #ff00ff, 0 0 20px #00f0ff;
-  transition: transform 0.3s, box-shadow 0.3s;
-  text-align: center;
-}
-
-.card:hover {
-  transform: translateY(-6px) scale(1.05);
-  box-shadow: 0 0 25px #ff00ff, 0 0 50px #00f0ff;
-}
-
-/* Inputs y botones simulación */
-.prompt-simulation {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.prompt-simulation input {
-  width: 80%;
-  max-width: 600px;
-  padding: 0.7rem 1rem;
-  border: 2px solid #00f0ff;
-  border-radius: 6px;
-  background: #111;
-  color: #00f0ff;
-  margin-bottom: 1rem;
+  color: #00ff99;
   outline: none;
-  transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
 }
-
-.prompt-simulation input:focus {
+.terminal-input:focus {
   border-color: #ff00ff;
-  box-shadow: 0 0 12px #ff00ff, 0 0 25px #00f0ff;
-  transform: scale(1.02);
+  box-shadow: 0 0 10px #ff00ff, 0 0 20px #00ff99;
 }
 
-.prompt-simulation button {
-  padding: 0.6rem 1.2rem;
+.terminal-btn {
+  padding: 0.5rem 1rem;
+  background: #00ff99;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 10px #00ff99, 0 0 20px #ff00ff;
+  transition: all 0.3s;
+}
+.terminal-btn:hover {
   background: #ff00ff;
   color: #111;
-  font-weight: bold;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
-  box-shadow: 0 0 8px #ff00ff, 0 0 16px #00f0ff;
+  transform: scale(1.05);
 }
 
-.prompt-simulation button:hover {
-  background: #00f0ff;
-  color: #111;
-  transform: scale(1.08);
-  box-shadow: 0 0 16px #ff00ff, 0 0 32px #00f0ff;
-}
-
-/* Resultado neon */
-.resultado-neon {
-  margin-top: 1rem;
+/* Terminal output y logs */
+.terminal-output, .terminal-logs {
+  background: #050505;
+  border: 1px solid #00ff99;
   padding: 1rem;
-  background: #111;
-  border: 2px solid #00f0ff;
-  border-radius: 12px;
-  box-shadow: 0 0 20px #ff00ff, 0 0 40px #00f0ff;
-  color: #00f0ff;
-  font-weight: bold;
-  text-align: center;
-  animation: neon-glow 2s infinite alternate;
+  margin-top: 1rem;
+  width: 95%;
+  max-height: 200px;
+  overflow-y: auto;
+  font-family: 'Courier New', monospace;
+  color: #00ff99;
+  box-shadow: 0 0 15px #00ff99, 0 0 30px #ff00ff;
+  position: relative;
+}
+.log-line {
+  font-size: 0.9rem;
 }
 
-/* Animación glow */
-@keyframes neon-glow {
-  from { box-shadow: 0 0 15px #ff00ff, 0 0 30px #00f0ff; }
-  to { box-shadow: 0 0 30px #ff00ff, 0 0 60px #00f0ff; }
-}
-
-/* Botón de documentación */
+/* Botón documentación */
 .doc-button {
   padding: 0.6rem 1.5rem;
   margin-top: 1rem;
-  background: #00f0ff;
+  background: #00ff99;
   color: #111;
   font-weight: bold;
   border: none;
-  border-radius: 6px;
+  border-radius: 5px;
   cursor: pointer;
-  box-shadow: 0 0 15px #00f0ff, 0 0 30px #ff00ff;
-  transition: 0.3s;
+  box-shadow: 0 0 15px #00ff99, 0 0 30px #ff00ff;
 }
-
 .doc-button:hover {
   background: #ff00ff;
   color: #111;
   transform: scale(1.05);
-  box-shadow: 0 0 25px #00f0ff, 0 0 50px #ff00ff;
+  box-shadow: 0 0 25px #00ff99, 0 0 50px #ff00ff;
 }
 
-/* Contenido avanzado */
-.advanced-section {
-  margin-top: 1rem;
-  border: 2px solid #ff00ff;
-  padding: 1rem;
-  border-radius: 12px;
-  box-shadow: 0 0 15px #ff00ff, 0 0 30px #00f0ff;
+/* Engranajes decorativos con pseudo-elementos */
+.unidad6-section::after {
+  content: "⚙";
+  font-size: 3rem;
+  color: rgba(0,255,153,0.1);
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  animation: rotateGear 5s linear infinite;
+}
+@keyframes rotateGear {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-/* Historial de prompts */
-.history {
-  margin-top: 1rem;
-  max-height: 150px;
-  overflow-y: auto;
-  border-top: 1px solid #ff00ff;
-  padding-top: 0.5rem;
+/* Animación terminal scrolling */
+.terminal-logs {
+  animation: scrollLogs 1s infinite;
 }
-
-.history ul {
-  padding-left: 1rem;
-}
-
-.history li {
-  margin-bottom: 0.5rem;
-  color: #00f0ff;
-  font-size: 0.95rem;
+@keyframes scrollLogs {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-2px); }
 }
 
 /* Responsive */
@@ -218,13 +195,7 @@
   .unidad6-section {
     width: 95%;
   }
-
-  .prompt-simulation input {
+  .terminal-input {
     width: 95%;
-  }
-
-  .cards {
-    flex-direction: column;
-    align-items: center;
   }
 }
