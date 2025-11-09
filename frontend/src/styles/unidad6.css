@@ -1,3 +1,4 @@
+/* Container principal */
 .unidad6-container {
   display: flex;
   flex-direction: column;
@@ -9,10 +10,11 @@
   min-height: 100vh;
 }
 
+/* Título principal con glitch/neón */
 .unidad6-container h2 {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   color: #ff00ff;
-  text-shadow: 0 0 5px #ff00ff, 0 0 10px #00f0ff, 0 0 20px #ff00ff;
+  text-shadow: 0 0 5px #ff00ff, 0 0 15px #00f0ff, 0 0 30px #ff00ff;
   margin-bottom: 2rem;
   animation: flicker 1.5s infinite alternate;
 }
@@ -22,29 +24,37 @@
   20%, 24%, 55% { opacity: 0.4; }
 }
 
+/* Secciones principales */
 .unidad6-section {
   background: #111;
   border: 2px solid #00f0ff;
-  border-radius: 10px;
-  padding: 1.5rem;
+  border-radius: 12px;
+  padding: 1.8rem;
   margin: 1rem 0;
   width: 100%;
   max-width: 800px;
-  box-shadow: 0 0 15px #ff00ff, 0 0 30px #00f0ff;
-  transition: transform 0.3s;
+  box-shadow: 0 0 20px #ff00ff, 0 0 40px #00f0ff;
+  transition: transform 0.4s, box-shadow 0.4s;
 }
 
 .unidad6-section:hover {
-  transform: translateY(-5px) scale(1.02);
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 0 30px #ff00ff, 0 0 60px #00f0ff;
 }
 
 .unidad6-section h3 {
   color: #00f0ff;
-  margin-bottom: 0.8rem;
-  font-size: 1.4rem;
-  text-shadow: 0 0 5px #00f0ff, 0 0 10px #ff00ff;
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  text-shadow: 0 0 5px #00f0ff, 0 0 15px #ff00ff;
+  transition: text-shadow 0.3s;
 }
 
+.unidad6-section h3:hover {
+  text-shadow: 0 0 15px #00f0ff, 0 0 30px #ff00ff;
+}
+
+/* Párrafos y listas */
 .unidad6-section p,
 .unidad6-section li {
   color: #c5c5c5;
@@ -61,8 +71,35 @@
   content: "▹";
   margin-right: 0.5rem;
   color: #ff00ff;
+  font-weight: bold;
 }
 
+/* Tarjetas (cards) */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.card {
+  background: #111;
+  border: 2px solid #ff00ff;
+  border-radius: 12px;
+  padding: 1rem;
+  width: 180px;
+  box-shadow: 0 0 10px #ff00ff, 0 0 20px #00f0ff;
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 0 25px #ff00ff, 0 0 50px #00f0ff;
+}
+
+/* Inputs y botones simulación */
 .prompt-simulation {
   display: flex;
   flex-direction: column;
@@ -72,63 +109,122 @@
 .prompt-simulation input {
   width: 80%;
   max-width: 600px;
-  padding: 0.6rem 1rem;
+  padding: 0.7rem 1rem;
   border: 2px solid #00f0ff;
-  border-radius: 5px;
+  border-radius: 6px;
   background: #111;
   color: #00f0ff;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
   outline: none;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
 }
 
 .prompt-simulation input:focus {
   border-color: #ff00ff;
-  box-shadow: 0 0 10px #ff00ff;
+  box-shadow: 0 0 12px #ff00ff, 0 0 25px #00f0ff;
+  transform: scale(1.02);
 }
 
 .prompt-simulation button {
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1.2rem;
   background: #ff00ff;
   color: #111;
   font-weight: bold;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
   transition: 0.3s;
+  box-shadow: 0 0 8px #ff00ff, 0 0 16px #00f0ff;
 }
 
 .prompt-simulation button:hover {
   background: #00f0ff;
   color: #111;
-  transform: scale(1.05);
+  transform: scale(1.08);
+  box-shadow: 0 0 16px #ff00ff, 0 0 32px #00f0ff;
 }
 
+/* Resultado neon */
 .resultado-neon {
   margin-top: 1rem;
   padding: 1rem;
   background: #111;
   border: 2px solid #00f0ff;
-  border-radius: 10px;
-  box-shadow: 0 0 15px #ff00ff, 0 0 30px #00f0ff;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #ff00ff, 0 0 40px #00f0ff;
   color: #00f0ff;
   font-weight: bold;
   text-align: center;
   animation: neon-glow 2s infinite alternate;
 }
 
+/* Animación glow */
 @keyframes neon-glow {
-  from { box-shadow: 0 0 10px #ff00ff, 0 0 20px #00f0ff; }
-  to { box-shadow: 0 0 20px #ff00ff, 0 0 40px #00f0ff; }
+  from { box-shadow: 0 0 15px #ff00ff, 0 0 30px #00f0ff; }
+  to { box-shadow: 0 0 30px #ff00ff, 0 0 60px #00f0ff; }
+}
+
+/* Botón de documentación */
+.doc-button {
+  padding: 0.6rem 1.5rem;
+  margin-top: 1rem;
+  background: #00f0ff;
+  color: #111;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 0 15px #00f0ff, 0 0 30px #ff00ff;
+  transition: 0.3s;
+}
+
+.doc-button:hover {
+  background: #ff00ff;
+  color: #111;
+  transform: scale(1.05);
+  box-shadow: 0 0 25px #00f0ff, 0 0 50px #ff00ff;
+}
+
+/* Contenido avanzado */
+.advanced-section {
+  margin-top: 1rem;
+  border: 2px solid #ff00ff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #ff00ff, 0 0 30px #00f0ff;
+}
+
+/* Historial de prompts */
+.history {
+  margin-top: 1rem;
+  max-height: 150px;
+  overflow-y: auto;
+  border-top: 1px solid #ff00ff;
+  padding-top: 0.5rem;
+}
+
+.history ul {
+  padding-left: 1rem;
+}
+
+.history li {
+  margin-bottom: 0.5rem;
+  color: #00f0ff;
+  font-size: 0.95rem;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .unidad6-section {
-    width: 90%;
+    width: 95%;
   }
 
   .prompt-simulation input {
     width: 95%;
+  }
+
+  .cards {
+    flex-direction: column;
+    align-items: center;
   }
 }
